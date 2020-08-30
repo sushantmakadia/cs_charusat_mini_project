@@ -2,6 +2,9 @@ package com.example.csminiproject;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 
 import android.os.Bundle;
 import android.util.Log;
@@ -21,14 +24,20 @@ import java.util.Map;
 import static com.example.csminiproject.Creds.sId;
 public class demo extends AppCompatActivity {
     Form form;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
     ArrayList<Form> list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo);
+        recyclerView = findViewById(R.id.rv1);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         form = new Form();
         list = new ArrayList<>();
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         DatabaseReference myRef = database.getReference(sId);
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -40,6 +49,8 @@ public class demo extends AppCompatActivity {
                 }
 
                 System.out.println(list.get(1).getStdSem());
+                adapter = new myAdapter(list, this);
+                recyclerView.setAdapter(adapter);
             }
 
             @Override

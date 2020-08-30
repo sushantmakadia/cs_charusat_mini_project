@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/aclonica"
-                android:text="Generate Form"
+                android:text="Generate Report"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
 
