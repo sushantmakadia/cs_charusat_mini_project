@@ -246,7 +246,8 @@ public class Achievement_Form extends AppCompatActivity implements DatePickerDia
                     students.put("DriveLink",Drive);
 
 
-                    DatabaseReference myRef = database.getReference(sId);
+
+                    DatabaseReference myRef = database.getReference("StudentForm").child(sId);
                    //myRef.child(sId).child(path).setValue(students);
                     myRef.push().setValue(students, new DatabaseReference.CompletionListener() {
                         @Override

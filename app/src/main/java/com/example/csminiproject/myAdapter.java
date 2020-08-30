@@ -25,6 +25,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.Viewholder> {
     private ValueEventListener context;
 
     public myAdapter(ArrayList<Form> listItems, ValueEventListener context) {
+
         this.listItems = listItems;
         this.context =  context;
     }
@@ -41,6 +42,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.Viewholder> {
 
     @Override
     public void onBindViewHolder(Viewholder holder, final int position) {
+
 final Form listItem= listItems.get(position);
 holder.th.setText(listItem.getEventName());
 holder.td.setText(listItem.getStdSem());

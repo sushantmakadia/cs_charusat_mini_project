@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.csminiproject">
 
     <application
@@ -9,18 +10,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".demo"
+        <activity android:name=".ViewForm"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
-        <activity android:name=".Achievement_Form"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".Admin_login"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".AdminMainPage"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".Review_Form"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
-        <activity android:name=".StudentMainPage"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".demo"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".Achievement_Form"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".Admin_login"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
+        <activity
+            android:name=".AdminMainPage"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".Review_Form"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".StudentMainPage"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".splash_screen"
             android:theme="@style/Theme.AppCompat.NoActionBar">

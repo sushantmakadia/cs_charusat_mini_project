@@ -5,53 +5,45 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import android.os.Bundle;
-import android.util.Log;
 
-import com.google.firebase.FirebaseError;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import static com.example.csminiproject.Creds.sId;
-public class demo extends AppCompatActivity {
-    Form form;
+
+public class ViewForm extends AppCompatActivity {
+    String form;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
-    ArrayList<Form> list;
+    ArrayList<String> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_demo);
+        setContentView(R.layout.activity_view_form);
         recyclerView = findViewById(R.id.rv1);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        form = new Form();
-        list = new ArrayList<>();
+
+        list = new ArrayList<String>();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        DatabaseReference myRef2 = database.getReference("StudentForm/"+sId);
+        DatabaseReference myRef2 = database.getReference("StudentForm");
         myRef2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                System.out.println("-------------------------------------------------");
                 for (DataSnapshot ds: snapshot.getChildren()){
-                    form = ds.getValue(Form.class);
-                    System.out.println(form.getStdSem());
+                    form = ds.getKey();
+                    System.out.println(ds.getKey());
                     list.add(form);
                 }
 
-               // System.out.println(list.get(0).getStdSem());
-                adapter = new myAdapter(list, this);
+                adapter = new myAdapter2(list, this);
                 recyclerView.setAdapter(adapter);
             }
 

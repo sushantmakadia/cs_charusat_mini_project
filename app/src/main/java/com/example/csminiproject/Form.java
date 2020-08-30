@@ -10,6 +10,10 @@ public class Form implements Serializable {
 
     private String StdID;
 
+
+
+
+
     private String EventType;
 
     public String getStdID() {
@@ -103,6 +107,7 @@ public class Form implements Serializable {
         DriveLink = driveLink;
         StdName = stdName;
         StdSem = stdSem;
+
     }
 
     private String EventName;
