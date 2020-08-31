@@ -10,7 +10,15 @@ public class Form implements Serializable {
 
     private String StdID;
 
+    public String getKey() {
+        return Key;
+    }
 
+    public void setKey(String key) {
+        Key = key;
+    }
+
+    private  String Key;
 
 
 
@@ -96,7 +104,7 @@ public class Form implements Serializable {
         StdSem = stdSem;
     }
 
-    public Form(String stdID, String eventType, String eventName, String fromDate, String toDate, String clgScholarship, String extScholarship, String driveLink, String stdName, String stdSem) {
+    public Form(String stdID, String eventType, String eventName, String fromDate, String toDate, String clgScholarship, String extScholarship, String driveLink, String stdName, String stdSem,String key) {
         StdID = stdID;
         EventType = eventType;
         EventName = eventName;
@@ -107,6 +115,7 @@ public class Form implements Serializable {
         DriveLink = driveLink;
         StdName = stdName;
         StdSem = stdSem;
+        Key = key;
 
     }
 

@@ -9,6 +9,7 @@ import android.view.View;
 
 public class AdminMainPage extends AppCompatActivity {
 CardView viewform ;
+    CardView report ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +19,14 @@ CardView viewform ;
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(AdminMainPage.this,ViewForm.class);
+                startActivity(i);
+            }
+        });
+        report = findViewById(R.id.card_approved);
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AdminMainPage.this,Report_generate.class);
                 startActivity(i);
             }
         });

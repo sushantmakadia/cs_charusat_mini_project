@@ -270,6 +270,7 @@
                             android:layout_marginStart="40dp"
                             android:layout_marginTop="15dp"
                             android:layout_marginEnd="30dp"
+
                             android:layout_marginBottom="10dp"
                             android:textColor="#FFFFFF"
                             android:textSize="16sp"
@@ -288,6 +289,7 @@
                             android:layout_marginEnd="30dp"
                             android:text="What kind of event did you participate in?"
                             android:textColor="#FFFFFF"
+                            android:textColorHint="#ffffff"
                             android:textSize="18sp"
                             app:layout_constraintBottom_toTopOf="@+id/spinner_activity"
                             app:layout_constraintEnd_toEndOf="parent"

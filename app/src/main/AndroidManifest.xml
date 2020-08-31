@@ -10,18 +10,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewForm"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+        <activity android:name=".Report_generate"></activity>
+        <activity
+            android:name=".ViewForm"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".demo"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Achievement_Form"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".Admin_login"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-
         <activity
             android:name=".AdminMainPage"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
