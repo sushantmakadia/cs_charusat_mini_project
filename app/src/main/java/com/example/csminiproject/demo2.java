@@ -1,10 +1,5 @@
 package com.example.csminiproject;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,37 +11,40 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import static com.example.csminiproject.Creds.sId;
-public class Report_generate extends AppCompatActivity {
+public class demo2 extends AppCompatActivity {
     Form form;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     ArrayList<Form> list;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-String key_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo);
         recyclerView = findViewById(R.id.rv1);
 
-        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+
         form = new Form();
         list = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         Intent intent=getIntent();
-        final String year = (String) intent.getExtras().get("year");
-        DatabaseReference myRef2 = database.getReference("StudentForm/"+year);
-
+        String path = (String) intent.getExtras().get("path");
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        DatabaseReference myRef2 = database.getReference("StudentForm"+"/"+path);
         myRef2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot ds: snapshot.getChildren()){
-                    key_id = ds.getKey();
-                    System.out.println(key_id);
-                    DatabaseReference myRef3 = database.getReference("StudentForm/"+year+"/"+key_id);
+                    //String year = ds.getKey();
+/*
+                    DatabaseReference myRef3 = database.getReference("StudentForm/"+year+"/"+sId);
 
                     myRef3.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -56,12 +54,12 @@ String key_id;
 
                                 form = ds.getValue(Form.class);
 
-                                System.out.println(form.getEventName());
+
                                 list.add(form);
                             }
 
                             // System.out.println(list.get(0).getStdSem());
-                            adapter = new myAdapter3(list, this);
+                            adapter = new myAdapter(list, this);
                             recyclerView.setAdapter(adapter);
                         }
 
@@ -69,13 +67,15 @@ String key_id;
                         public void onCancelled(@NonNull DatabaseError error) {
 
                         }
-                    });
+                    });*/
+                    form = ds.getValue(Form.class);
 
+
+                    list.add(form);
                 }
-
-                // System.out.println(list.get(0).getStdSem());
-                adapter = new myAdapter3(list, this);
+                adapter = new myAdapter(list, this);
                 recyclerView.setAdapter(adapter);
+
             }
 
             @Override

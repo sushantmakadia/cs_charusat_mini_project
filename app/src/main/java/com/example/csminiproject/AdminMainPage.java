@@ -26,7 +26,7 @@ CardView viewform ;
         report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(AdminMainPage.this,Report_generate.class);
+                Intent i = new Intent(AdminMainPage.this,Report_generate_year.class);
                 startActivity(i);
             }
         });

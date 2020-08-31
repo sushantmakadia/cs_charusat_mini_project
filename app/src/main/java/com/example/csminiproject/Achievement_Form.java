@@ -35,6 +35,7 @@ public class Achievement_Form extends AppCompatActivity implements DatePickerDia
     Spinner spinner_activity;
     static int i=1;
     EditText edt_id;
+    EditText edt_year;
     EditText edt_name;
     EditText edt_sem;
     EditText edt_event_name;
@@ -60,7 +61,7 @@ public class Achievement_Form extends AppCompatActivity implements DatePickerDia
         setContentView(R.layout.activity_achievement__form);
         database = FirebaseDatabase.getInstance();
         spinner_activity = findViewById(R.id.spinner_activity);
-
+        edt_year=findViewById(R.id.edt_year);
         edt_id=findViewById(R.id.edt_id);
         edt_name=findViewById(R.id.edt_name);
         edt_sem = findViewById(R.id.edt_sem);
@@ -170,8 +171,11 @@ public class Achievement_Form extends AppCompatActivity implements DatePickerDia
 
 
                 //ERROR MESSAGE HERE
-
-                if(edt_id.getText().toString().isEmpty()){
+                if(edt_year.getText().toString().isEmpty()){
+                    edt_year.setError("Please fill in the ID");
+                    edt_year.requestFocus();
+                }
+                else if(edt_id.getText().toString().isEmpty()){
                     edt_id.setError("Please fill in the ID");
                     edt_id.requestFocus();
                 }
@@ -219,7 +223,7 @@ public class Achievement_Form extends AppCompatActivity implements DatePickerDia
                     String StdID = edt_id.getText().toString().trim();
                     String StdName = edt_name.getText().toString().trim();
                     String StdSem = edt_sem.getText().toString().trim();
-
+                    String year = edt_year.getText().toString().trim();
                     //Selecting EventType
                     String EventType = spinner_activity.getSelectedItem().toString().trim();
 
@@ -244,10 +248,11 @@ public class Achievement_Form extends AppCompatActivity implements DatePickerDia
                     students.put("ClgScholarship",ClgSch);
                     students.put("ExtScholarship",ExtSch);
                     students.put("DriveLink",Drive);
+                    students.put("year",year);
 
 
 
-                    DatabaseReference myRef = database.getReference("StudentForm").child(sId);
+                    DatabaseReference myRef = database.getReference("StudentForm").child(year).child(sId);
                    //myRef.child(sId).child(path).setValue(students);
                     myRef.push().setValue(students, new DatabaseReference.CompletionListener() {
                         @Override

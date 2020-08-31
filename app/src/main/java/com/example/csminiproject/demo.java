@@ -27,32 +27,53 @@ public class demo extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     ArrayList<Form> list;
-
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo);
         recyclerView = findViewById(R.id.rv1);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
         form = new Form();
         list = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        DatabaseReference myRef2 = database.getReference("StudentForm/"+sId);
+        DatabaseReference myRef2 = database.getReference("StudentForm");
         myRef2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot ds: snapshot.getChildren()){
-                    form = ds.getValue(Form.class);
-                    System.out.println(form.getStdSem());
-                    list.add(form);
+                    String year = ds.getKey();
+
+                    DatabaseReference myRef3 = database.getReference("StudentForm/"+year+"/"+sId);
+
+                    myRef3.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            for (DataSnapshot ds: snapshot.getChildren()){
+
+                                form = ds.getValue(Form.class);
+
+
+                                list.add(form);
+                            }
+
+                            // System.out.println(list.get(0).getStdSem());
+                            adapter = new myAdapter(list, this);
+                            recyclerView.setAdapter(adapter);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
 
-               // System.out.println(list.get(0).getStdSem());
-                adapter = new myAdapter(list, this);
-                recyclerView.setAdapter(adapter);
+
             }
 
             @Override

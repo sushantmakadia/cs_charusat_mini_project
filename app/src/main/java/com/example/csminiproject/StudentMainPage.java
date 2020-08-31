@@ -7,6 +7,7 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +23,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 
 public class StudentMainPage extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
-
+Button b1;
     CardView card_form;
     CardView card_submitted;
     ImageView logout;
@@ -42,14 +43,20 @@ public class StudentMainPage extends AppCompatActivity implements GoogleApiClien
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_main_page);
 
-
+        b1= findViewById(R.id.b1);
         card_form=findViewById(R.id.card_requested);
         card_submitted=findViewById(R.id.card_approved);
         logout = findViewById(R.id.logout);
         name = findViewById(R.id.student_name);
         id = findViewById(R.id.student_id);
 
-
+b1.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent i = new Intent(StudentMainPage.this,Student_report.class);
+        startActivity(i);
+    }
+});
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this,this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API , gso).build();

@@ -15,15 +15,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
 import static com.example.csminiproject.Creds.sId;
-public class Report_generate extends AppCompatActivity {
+public class Student_report extends AppCompatActivity {
     Form form;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     ArrayList<Form> list;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-String key_id;
+    String year;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,18 +34,18 @@ String key_id;
         list = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        Intent intent=getIntent();
-        final String year = (String) intent.getExtras().get("year");
-        DatabaseReference myRef2 = database.getReference("StudentForm/"+year);
+
+        DatabaseReference myRef2 = database.getReference("StudentForm");
 
         myRef2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot ds: snapshot.getChildren()){
-                    key_id = ds.getKey();
-                    System.out.println(key_id);
-                    DatabaseReference myRef3 = database.getReference("StudentForm/"+year+"/"+key_id);
+                    year = ds.getKey();
+                    System.out.println(year);
+                    DatabaseReference myRef3 = database.getReference("StudentForm/"+year+"/"+sId);
+
 
                     myRef3.addValueEventListener(new ValueEventListener() {
                         @Override
